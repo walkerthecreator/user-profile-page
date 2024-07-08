@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id           Int              @id @default(autoincrement())
+  name         String
+  email        String           @unique
+  profile      String
+  banner       String
+  links        Link[]
+  work         WorkExperience[]
+  projects     Project[]
+  hackathons   Hackathon[]
+  certificates Certificate[]
+}
+
+model Link {
+  id        Int     @id @default(autoincrement())
+  github    String?
+  instagram String?
+  twitter   String?
+  youtube   String?
+  figma     String?
+  linkedin  String?
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model WorkExperience {
+  id           Int      @id @default(autoincrement())
+  name         String
+  organisation String
+  startingDate DateTime
+  endingDate   DateTime
+  isPresent    Boolean
+  userId       Int
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model Project {
+  id          Int    @id @default(autoincrement())
+  name        String
+  description String
+  link        String
+  userId      Int
+  user        User   @relation(fields: [userId], references: [id])
+}
+
+model Hackathon {
+  id          Int     @id @default(autoincrement())
+  name        String
+  organisedBy String
+  year        Int
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+}
+
+model Certificate {
+  id           Int    @id @default(autoincrement())
+  name         String
+  organisation String
+  year         Int
+  userId       Int
+  user         User   @relation(fields: [userId], references: [id])
+}
