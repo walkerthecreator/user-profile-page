@@ -28,6 +28,7 @@ interface linksType {
 }
 
 interface UserType {
+    id : number ,
     name : string ,
     banner : string ,
     profile : string ,
@@ -44,7 +45,7 @@ interface UserType {
   }
 
   async function submitChanges(){
-      const response = await axios.post(`http://localhost:3000/api/user`)
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_URL}/api/user/${user.id}` , {...links})
   }
 
   const [file, setFile] = useState<any>(null);

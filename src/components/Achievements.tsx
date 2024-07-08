@@ -41,7 +41,7 @@ export default function Achivements({ hackathons , certificates } : { hackathons
               <DialogHeader>
                 <DialogTitle>Add Your Achievements </DialogTitle>
                 <DialogDescription>
-                    You can show little why you're better 
+                    You can show little why you&apos;re better 
                 </DialogDescription>
               </DialogHeader>
               <div className="grid gap-4 py-4">
