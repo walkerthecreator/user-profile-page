@@ -41,7 +41,7 @@ interface UserData {
 
 
 
-export async function POST(req : NextResponse){
+export async function POST(req : NextRequest){
         try {
           const userData : UserData = await req.json();
     

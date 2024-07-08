@@ -12,7 +12,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Figma, Github, Instagram, Linkedin, LinkedinIcon, Twitter, Youtube } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 
@@ -36,7 +36,7 @@ interface UserType {
 }
 
  function Header({ links , user } : {links : linksType , user : UserType} ) {
-  const keys = Object.keys(links).filter( item => item !== "id" && item !== 'userId' )
+  const keys = Object.keys(links).filter( item => item !== "id" && item !== 'userId' ) as Array<keyof Omit<linksType, 'id' | 'userId'>>;
   const [ metaLinks , setMetaLinks ] = useState<linksType>(links) 
 
   function handleChange( e : React.ChangeEvent<HTMLInputElement> ){
@@ -55,7 +55,7 @@ interface UserType {
     setFile(e.target.files![0]);
   };
 
-  const handleSubmit = async (e :  React.ChangeEvent<HTMLInputElement> ) => {
+  const handleSubmit = async (e : React.FormEvent<HTMLFormElement> ) => {
     e.preventDefault();
 
     if (!file) {
@@ -144,11 +144,11 @@ interface UserType {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex gap-2 mt-3 w-full mb-4 md:w-3/4 flex-wrap">
             {
-              keys.map((item : any , index : number) => {
+              keys.map((item  , index : number) => {
                 return <Link
                 key={index}
                 className="border border-zinc-200 max-sm:flex-grow text-center shadow-sm p-1 px-3 rounded-md"
-                href={links[item] }
+                href={links[item] } 
               >
                 { keys[index].charAt(0).toUpperCase() + keys[index].substring(1) }
               </Link>
