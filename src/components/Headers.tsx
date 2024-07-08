@@ -100,7 +100,7 @@ interface UserType {
 
           <Dialog>
                 <DialogTrigger asChild>
-                  <button className="bg-zinc-800 rounded-full max-sm:w-full p-1 px-3 text-white">Upload Photo</button>
+                  <button className="bg-zinc-800 rounded-full p-1 px-3 text-white">Upload Photo</button>
                 </DialogTrigger>
                 <DialogContent className="max-w-[90%] md:max-w-[800px]">
                   <DialogHeader>
